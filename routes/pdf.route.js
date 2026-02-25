@@ -1,5 +1,5 @@
 import express from "express"
-import isAuth from "../middleware/isAuth.js"
+import isAuth from "../controllers/middleware/isAuth.js"
 
 import { pdfDownload } from "../controllers/pdf.controller.js"
 
