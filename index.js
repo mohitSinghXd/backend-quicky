@@ -25,8 +25,7 @@ app.post(
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://frontend-n-oti-git-main-mohits-projects-76b2ce06.vercel.app" , 
-    "https://quicky-dkqz.vercel.app"
+     "https://frontend-quickly.vercel.app"
   ],
   credentials: true
 }))
