@@ -43,7 +43,7 @@ app.use("/api/notes", notesRouter);
 app.use("/api/pdf", pdfRouter);
 app.use("/api/credit", creditRouter);
 
-// Cache the connection promise across warm serverless invocations.
+
 let dbConnection;
 
 app.use(async (req, res, next) => {
@@ -58,9 +58,21 @@ app.use(async (req, res, next) => {
     await dbConnection;
     next();
   } catch (error) {
-    console.error("Database connection failed:", error.message);
+    console.error("Database initialization failed:", error.message);
     res.status(500).json({ message: "Database connection failed" });
   }
 });
 
+// Keep your existing routes AFTER the database middleware
+app.get("/", (req, res) => {
+  res.json({ message: "ExamNotes AI Backend Running 🚀" });
+});
+
+app.use("/api/auth", authRouter);
+app.use("/api/user", userRouter);
+app.use("/api/notes", notesRouter);
+app.use("/api/pdf", pdfRouter);
+app.use("/api/credit", creditRouter);
+
+// Vercel handles incoming requests
 export default app;
